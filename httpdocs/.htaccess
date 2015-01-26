@@ -1,0 +1,153 @@
+RewriteEngine on
+
+php_flag zlib.output_compression On 
+php_value zlib.output_compression_level -1
+
+
+Options +FollowSymLinks
+
+ErrorDocument 401 /404.htm
+ErrorDocument 403 /404.htm
+ErrorDocument 404 /404.htm
+
+
+
+RewriteCond %{HTTP_HOST} !^www.yolovalgo.com$
+RewriteCond %{HTTP_HOST} ^(.*).yolovalgo.com$
+
+
+
+
+
+RewriteRule ^$ /news.php?subdominio=%1&pestana=home&titu=%1&soloweb=y [P,L]
+
+RewriteRule ^/?$  /news.php?centro=home&soloweb=n  [L]  
+RewriteRule ^www/?$  /news.php?centro=home&soloweb=n  [L] 
+RewriteRule ^home/([a-z]{2})/?$ /news.php?centro=home&pais=$1  [L]
+
+RewriteRule ^rechazar/([^/]+)/?$  /news.php?centro=home&soloweb=n&rechazar=$1  [L] 
+
+RewriteRule ^www/([^Ç]+)/?$ /urlcorta.php?url=http://$1  [L]
+
+RewriteRule ^logout/?$ /news.php?centro=home&logout=logout  [L]
+
+
+RewriteRule ^partners/?$ /partners/index.php [L]
+
+
+
+
+RewriteRule ^go/([0-9]+)/(.+)$ /ir.php?id=$1&url=$2 [L]
+RewriteRule ^go/([0-9]+)/?$ /news.php?subdominiousuario=$1&pestana=home [L]
+
+RewriteRule ^login/?$ /registrate.php [L]
+
+RewriteRule ^login/?$ /registrate.php [L]
+
+RewriteRule ^registrate/?$ /registrate.php [L]
+RewriteRule ^web/?$ /registrate.php [L]
+
+RewriteRule ^sign/?$ /registrate.php [L]
+RewriteRule ^sign/([^/]+)/?$ /registrate.php?email=$1 [L]
+
+RewriteRule ^contacto/?$ /contactar.php [L]
+RewriteRule ^nosotros/?$ sobrenosotros.php [L]
+RewriteRule ^paises/?$ news.php?centro=paises [L]
+RewriteRule ^legal/?$ legal.php [L]
+RewriteRule ^login/?$ registrate.php [L]
+
+RewriteRule ^ok/?$ /admin.php?pestana=cuenta&submenu=ok  [L]
+RewriteRule ^nok/?$ /admin.php?pestana=cuenta&submenu=nok  [L]
+
+
+RewriteRule ^([a-z]{2})/buscar/([^/.]+)/([^/.]+)/([0-9]+)/?$ buscar.php?pais=$1&t=$2&q=$3&p=$4 [L]
+RewriteRule ^([a-z]{2})/buscar/([^/.]+)/([^/.]+)/([0-9]+)/a/?$ buscar.php?pais=$1&t=$2&q=$3&p=$4&avanzado=s [L]
+
+RewriteRule ^([0-9]+)/a/?$ buscar.php?pais=es&t=perfil&q=$1&p=1&avanzado=s [L]
+
+
+RewriteRule ^([0-9]+)/?$ /news.php?subdominio=$1&pestana=home&centro=perfil-yellow [L]
+RewriteRule ^([0-9]+)/([^/.]+)/?$ /news.php?subdominio=$1&pestana=$2&centro=perfil-yellow [L]
+
+
+
+RewriteRule ^([^/.]+)/?$ /news.php?subdominio=$1&pestana=home [L]
+
+
+
+
+
+RewriteRule ^([^/.]+)/contacto/?$ /news.php?subdominio=$1&pestana=contacto [L]
+
+
+RewriteRule ^([^/.]+)/editar/([^/.]+)/?$ /news.php?subdominio=$1&pestana=$2 [L]
+
+RewriteRule ^([^/.]+)/productos/([0-9]+)/?$ /news.php?subdominio=$1&pestana=productos&p=$2 [L]
+RewriteRule ^([^/.]+)/productos/([^/.]+)/?$ /news.php?subdominio=$1&pestana=productos&q=$2 [L]
+RewriteRule ^([^/.]+)/productos/([^/.]+)/([0-9]+)/?$ /news.php?subdominio=$1&pestana=productos&q=$2&p=$3 [L]
+RewriteRule ^([^/.]+)/productos/?$ /news.php?subdominio=$1&pestana=productos [L]
+RewriteRule ^([^/.]+)/servicios/?$ /news.php?subdominio=$1&pestana=productos [L]
+RewriteRule ^([^/.]+)/fotos?$ /news.php?subdominio=$1&pestana=fotos [L]
+
+
+RewriteRule ^perfil/alta/([^/]+)/([^/]+)/?$ /admin.php?pestana=inicio&submenu=cuentacreada&puk=$1&usuario=$2  [L]
+
+RewriteRule ^panel/([^/]+)/?$ /admin.php?pestana=$1  [L]
+RewriteRule ^panel/reenviar/mail/?$ /admin.php?pestana=confirmar&submenu=mail&reenviar=si  [L]
+RewriteRule ^panel/([^/]+)/([^/]+)/?$ /admin.php?pestana=$1&submenu=$2  [L]
+RewriteRule ^panel/([^/]+)/([^/]+)/e/([^/]+)/?$ /admin.php?pestana=$1&submenu=$2&error=$3  [L]
+RewriteRule ^panel/([^/]+)/([^/]+)/([^/]+)/?$ /admin.php?pestana=$1&submenu=$2&get=$3  [L]
+RewriteRule ^panel/([^/]+)/([^/]+)/([^/]+)/([^/]+)/?$ /admin.php?pestana=$1&submenu=$2&get=$3&var=$4  [L]
+
+
+
+
+
+
+
+RewriteRule ^usuario/([^/]+)/?$ /news.php?centro=usuario&nick=$1&pestana=publicaciones  [L]
+RewriteRule ^usuario/([^/]+)/modificar/([^/]+)/?$ /news.php?centro=usuario&nick=$1&pestana=$2  [L]
+RewriteRule ^usuario/([^/]+)/modificar/([^/]+)/([^/]+)/?$ /news.php?centro=usuario&nick=$1&pestana=$2&submenu=$3  [L]
+RewriteRule ^usuario/([^/]+)/([^/]+)/?$ /news.php?centro=usuario&nick=$1&pestana=$2  [L]
+RewriteRule ^usuario/([^/]+)/([^/]+)/([0-9]+)/?$ /news.php?centro=usuario&nick=$1&pestana=$2&p=$3  [L]
+
+
+RewriteRule ^([a-z]{2})/galeria/([^/.]+)/?$ news.php?pais=$1&centro=portada&tipo=$2&pestana=home [L]
+RewriteRule ^([a-z]{2})/galeria/([^/.]+)/([^/.]+)/([^/.]+)/?$ news.php?pais=$1&centro=portada&familia=$2&categoria=$3&pestana=$4 [L]
+RewriteRule ^([a-z]{2})/galeria/([^/.]+)/([^/.]+)/([^/.]+)/([^/.]+)/?$ news.php?pais=$1&centro=portada&familia=$2&categoria=$3&tipo=$4&pestana=$5 [L]
+RewriteRule ^([a-z]{2})/galeria/([^/.]+)/([^/.]+)/?$ news.php?pais=$1&centro=portada&familia=$2&pestana=$3 [L]
+RewriteRule ^([a-z]{2})/galeria/([^/.]+)/([^/.]+)/([^/.]+)/?$ news.php?pais=$1&centro=portada&tipo=$2&pestana=$3&familia=$4 [L]
+
+
+RewriteRule ^([a-z]{2})/galerias/?$ news.php?pais=$1&centro=galerias&tipo=Explorar_Galerias [L] 
+RewriteRule ^([a-z]{2})/galerias/empresas?$ news.php?pais=$1&centro=galerias&pestana=empresas&tipo=empresas [L] 
+RewriteRule ^([a-z]{2})/galerias/hosteleria?$ news.php?pais=$1&centro=galerias&pestana=hosteleria&tipo=hosteleria [L]
+RewriteRule ^([a-z]{2})/galerias/tiendas?$ news.php?pais=$1&centro=galerias&pestana=tiendas&tipo=tiendas [L]
+RewriteRule ^([a-z]{2})/galerias/ocio?$ news.php?pais=$1&centro=galerias&pestana=ocio&tipo=Ocio_y_Salud [L]
+
+
+
+RewriteRule ^([^/.]+)/publicaciones?$ /news.php?subdominio=$1&pestana=publicaciones [L] 
+RewriteRule ^([^/.]+)/publicaciones/([0-9]+)/?$ /news.php?subdominio=$1&pestana=publicaciones&p=$2 [L] 
+
+RewriteRule ^publicacion/([0-9]+)/?$ /news.php?centro=vernoticias&id=$1&pestana=publicaciones  [L] 
+RewriteRule ^([^/.]+)/publicacion/([^/.]+)/([0-9]+)/?$ /news.php?centro=vernoticias&subdominio=$1&id=$3&pestana=publicaciones  [L] 
+RewriteRule ^([^/.]+)/publicacion/?$ /news.php?centro=vernoticias&pestana=publicaciones  [L] 
+
+
+
+RewriteRule ^([^/.]+)/modificar/([^/.]+)/?$ /news.php?subdominio=$1&pestana=$2&menu=s [L]
+RewriteRule ^([^/.]+)/modificar/servicios/([0-9]+)/?$ /news.php?subdominio=$1&pestana=servicios&idproducto=$2 [L]
+
+RewriteRule ^([^/.]+)/noticia/([^/.]+)/([0-9]+)/?$ /news.php?subdominio=$1&pestana=publicacion&titu=$3 [L]
+RewriteRule ^([^/.]+)/articulo/([^/.]+)/([0-9]+)/?$ /news.php?subdominio=$1&pestana=producto&titu=$3 [L]
+
+
+
+RewriteRule ^([^/.]+)/seguidores/?$ /news.php?subdominio=$1&pestana=seguidores [L]
+RewriteRule ^([^/.]+)/recomendaciones/?$ /news.php?subdominio=$1&pestana=seguidores [L]
+RewriteRule ^([^/.]+)/visitas/?$ /news.php?subdominio=$1&pestana=visitas [L]
+
+
+
+RewriteRule ^([^/.]+)/fotos?$ /news.php?subdominio=$1&pestana=fotos [L]
